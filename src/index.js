@@ -14,9 +14,35 @@ function getInfo(){
 class TarjetaFruta extends React.Component{
   constructor(){
     super()
+    /*con esto del bind this para que apunte a la clase*/
+    /*this.agregar = this.agregar.bind(this)
+    this.quitar = this.quitar.bind(this)*/
+    //una mejor forma de hacerlo
+    const METHODS = [
+      'agregar',
+      'quitar',
+      'limpiar'
+    ]
+    METHODS.forEach((method) =>{
+      this[method] = this[method].bind(this)
+    })
     this.state = {
       cantidad: 0
     }
+  }
+  //Método agregar
+  agregar(){
+    this.setState({cantidad: this.state.cantidad +1})
+  }
+  //Método Quitar
+  quitar(){
+    this.setState({cantidad: this.state.cantidad - 1})
+  }
+  //Método limpiar
+  limpiar(){
+    this.setState({
+      cantidad: 0
+    })
   }
   //Lleva un metodo render que retorna nuestros elementos
   render(){
@@ -25,12 +51,11 @@ class TarjetaFruta extends React.Component{
         <h3>{ this.props.name }</h3>
         <div>{this.state.cantidad}</div>
         <button 
-          onClick={()=>{
-              this.setState({cantidad: this.state.cantidad +1})
-            }}
-            >
-              Agregar
+          onClick={this.agregar}>
+              +
             </button>
+        <button onClick={this.quitar}>-</button>
+        <button onClick={this.limpiar}>Limpiar</button>
         <hr/>
         <p>Precio: ${this.props.price}</p>
       </div>
