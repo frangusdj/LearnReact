@@ -12,38 +12,15 @@ function getInfo(){
 }
 //Componentes basados en clases
 class TarjetaFruta extends React.Component{
-  constructor(){
-    super()
-    /*con esto del bind this para que apunte a la clase*/
-    /*this.agregar = this.agregar.bind(this)
-    this.quitar = this.quitar.bind(this)*/
-    //una mejor forma de hacerlo
-    const METHODS = [
-      'agregar',
-      'quitar',
-      'limpiar'
-    ]
-    METHODS.forEach((method) =>{
-      this[method] = this[method].bind(this)
-    })
-    this.state = {
-      cantidad: 0
-    }
+  state = {
+    cantidad: 0
   }
   //Método agregar
-  agregar(){
-    this.setState({cantidad: this.state.cantidad +1})
-  }
+  agregar=()=>this.setState({cantidad: this.state.cantidad +1})
   //Método Quitar
-  quitar(){
-    this.setState({cantidad: this.state.cantidad - 1})
-  }
+  quitar=()=>this.setState({cantidad: this.state.cantidad - 1})
   //Método limpiar
-  limpiar(){
-    this.setState({
-      cantidad: 0
-    })
-  }
+  limpiar=()=>this.setState({cantidad: 0})
   //Lleva un metodo render que retorna nuestros elementos
   render(){
     return (
