@@ -10,14 +10,41 @@ const user1 = {
 function getInfo(){
   return `Hola mi nombre es: ${user1.name} y soy originario ${user1.country}`
 }
+//Componentes basados en clases
+class TarjetaFruta extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      cantidad: 0
+    }
+  }
+  //Lleva un metodo render que retorna nuestros elementos
+  render(){
+    return (
+      <div>
+        <h3>{ this.props.name }</h3>
+        <div>{this.state.cantidad}</div>
+        <button 
+          onClick={()=>{
+              this.setState({cantidad: this.state.cantidad +1})
+            }}
+            >
+              Agregar
+            </button>
+        <hr/>
+        <p>Precio: ${this.props.price}</p>
+      </div>
+    )
+  }
+}
 // como se puede hacer una funcion
-const TarjetaFruta = (props) => (
+/*const TarjetaFruta = (props) => (
   <div>
-    <h3>{ props.name }</h3>
-    <hr/>
-<p>Precio: ${props.price}</p>
-  </div>
-)
+        <h3>{ this.props.name }</h3>
+        <hr/>
+        <p>Precio: ${this.props.price}</p>
+      </div>
+)*/
 //Arow funcion
 //<!--llamamos a la funcion como una etiqueta-->
 const App = () => (
