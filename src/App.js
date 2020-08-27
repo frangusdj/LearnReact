@@ -1,41 +1,29 @@
 import React, {Component} from 'react'
-//import TarjetaFruta from './componentes/TarjetaFruta'
 
-class Contador extends Component{
-  state = {
-    video: {
-      title: 'Super Video',
-      likes: 0
-    }
-  }
-  add = () => {
-    this.setState((state) => ({
-      video: {
-        ...state.video,
-        likes: state.video.likes + 1
-      }
-    }))
-  }
+const Gato = (props) => (
+  <div>
+    <h1>Gato </h1>
+    <pre>
+      {JSON.stringify(props,null,4)}
+    </pre>
+  </div>
+)
+//Usando un spread combianmos otros datos con las props
+class App extends Component{
   render(){
+    const otrosDatos = {
+      raza: 'tropical',
+      peleasNocturnas: 300
+    }
     return(
       <div>
-        <h1>
-        {this.state.video.title}
-      </h1>
-      <button onClick = {this.add}>
-        Likes: ({this.state.video.likes})
-      </button>
+          <Gato 
+            name = 'Garfield'
+            age = '2 años'
+            {...otrosDatos}
+          />
       </div>
     )
   }
 }
-//Arow funcion
-//<!--llamamos a la funcion como una etiqueta-->
-const App = () => (
-    <div>
-      <Contador />
-    </div>
-  ) // solo lo hemos declarado
-
-  //Exportamos por defecto la constante App
   export default App
