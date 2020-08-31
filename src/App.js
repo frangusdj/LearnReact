@@ -1,29 +1,36 @@
 import React, {Component} from 'react'
 
 
-class App extends Component{
+
+class PersistenciaEventos extends Component{
   state = {
-    text: '',
-    evento: ''
+    color: 'blue'
   }
-  manejador = (event) => {
+  handlerChange = (event) => {
+    //event.persist();
+    //Otra forma de hacerlo diferente al anterior
+    const color =  event.target.value
     console.log(event.target.value)
-    this.setState({
-      text: event.target.value,
-      evento: event.type
-    })
+    this.setState(state => ({
+      color
+    }))
   }
   render(){
-    return(
+    return (
       <div>
-        <input 
-        type = "text" 
-        onChange = {this.manejador}
-        />
-        <h1>{this.state.text}</h1>
-        <h2>{this.state.evento}</h2>
+        <input type = "text"
+        onChange = {this.handlerChange}/>
+        <h1 style = {{
+          color: this.state.color
+        }}>{this.state.color}</h1>
       </div>
     )
   }
 }
+
+const App = () => (
+  <div>
+    <PersistenciaEventos />
+  </div>
+)
   export default App
